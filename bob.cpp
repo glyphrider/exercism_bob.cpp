@@ -7,6 +7,12 @@ namespace bob
 {
 	std::string hey(const std::string& message)
 	{
+		static Responder responder;
+		return responder.respond(message);
+	}
+	Responder::Responder() {};
+	std::string Responder::respond(const std::string& message)
+	{
 		std::smatch m;
 		static std::regex silence_regex("^\\s*$");
 		static std::regex shouting_regex(".*(!|\\?)$");
