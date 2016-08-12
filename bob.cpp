@@ -15,13 +15,25 @@ namespace bob
 		_asking_a_question_regex(".*\\?\\s*$") {}
 	std::string Responder::respond()
 	{
-		if (std::regex_search(_message,m,_silence_regex))
+		if (is_silence())
 			return "Fine. Be that way!";
-		if (std::regex_search(_message,m,_contains_uppercase_regex) &&
-		   !std::regex_search(_message,m,_contains_lowercase_regex))
+		if (is_yelling())
 			return "Whoa, chill out!";
-		if (std::regex_search(_message,m,_asking_a_question_regex))
+		if (is_question())
 			return "Sure.";
 		return "Whatever.";
+	}
+	bool Responder::is_silence()
+	{
+		return std::regex_search(_message,m,_silence_regex);
+	}
+	bool Responder::is_yelling()
+	{
+		return (std::regex_search(_message,m,_contains_uppercase_regex) &&
+			!std::regex_search(_message,m,_contains_lowercase_regex));
+	}
+	bool Responder::is_question()
+	{
+		return std::regex_search(_message,m,_asking_a_question_regex);
 	}
 }
