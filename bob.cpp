@@ -1,5 +1,3 @@
-// vim: ts=4:sts=4
-
 #include "bob.h"
 
 namespace bob

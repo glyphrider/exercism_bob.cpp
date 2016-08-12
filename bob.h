@@ -1,5 +1,3 @@
-// vim: ts=4:sts=4:sw=4
-
 #ifndef __bob_h__
 #define __bob_h__
 
