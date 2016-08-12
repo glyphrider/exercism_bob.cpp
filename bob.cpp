@@ -1,7 +1,6 @@
 // vim: ts=4:sts=4
 
 #include "bob.h"
-#include <regex>
 
 namespace bob
 {
@@ -10,15 +9,14 @@ namespace bob
 		static Responder responder;
 		return responder.respond(message);
 	}
-	Responder::Responder() {};
+	Responder::Responder():
+		silence_regex("^\\s*$"),
+		shouting_regex(".*(!|\\?)$"),
+		contains_lowercase_regex("[a-z]"),
+		contains_uppercase_regex("[A-Z]"),
+		asking_a_question_regex(".*\\?\\s*$") {}
 	std::string Responder::respond(const std::string& message)
 	{
-		std::smatch m;
-		static std::regex silence_regex("^\\s*$");
-		static std::regex shouting_regex(".*(!|\\?)$");
-		static std::regex contains_lowercase_regex("[a-z]");
-		static std::regex contains_uppercase_regex("[A-Z]");
-		static std::regex asking_a_question_regex(".*\\?\\s*$");
 		if (std::regex_search(message,m,silence_regex))
 			return "Fine. Be that way!";
 		if (std::regex_search(message,m,contains_uppercase_regex) &&
