@@ -13,15 +13,16 @@ namespace bob
 	class Responder
 	{
 		private:
-			std::regex silence_regex;
-			std::regex shouting_regex;
-			std::regex contains_lowercase_regex;
-			std::regex contains_uppercase_regex;
-			std::regex asking_a_question_regex;
+			std::string _message;
+			std::regex _silence_regex;
+			std::regex _shouting_regex;
+			std::regex _contains_lowercase_regex;
+			std::regex _contains_uppercase_regex;
+			std::regex _asking_a_question_regex;
 			std::smatch m;
 		public:
-			Responder();
-			std::string respond(const std::string& message);
+			Responder(const std::string& message);
+			std::string respond();
 	};
 };
 

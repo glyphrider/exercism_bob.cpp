@@ -6,23 +6,23 @@ namespace bob
 {
 	std::string hey(const std::string& message)
 	{
-		static Responder responder;
-		return responder.respond(message);
+		return Responder(message).respond();
 	}
-	Responder::Responder():
-		silence_regex("^\\s*$"),
-		shouting_regex(".*(!|\\?)$"),
-		contains_lowercase_regex("[a-z]"),
-		contains_uppercase_regex("[A-Z]"),
-		asking_a_question_regex(".*\\?\\s*$") {}
-	std::string Responder::respond(const std::string& message)
+	Responder::Responder(const std::string& message):
+		_message(message),
+		_silence_regex("^\\s*$"),
+		_shouting_regex(".*(!|\\?)$"),
+		_contains_lowercase_regex("[a-z]"),
+		_contains_uppercase_regex("[A-Z]"),
+		_asking_a_question_regex(".*\\?\\s*$") {}
+	std::string Responder::respond()
 	{
-		if (std::regex_search(message,m,silence_regex))
+		if (std::regex_search(_message,m,_silence_regex))
 			return "Fine. Be that way!";
-		if (std::regex_search(message,m,contains_uppercase_regex) &&
-		   !std::regex_search(message,m,contains_lowercase_regex))
+		if (std::regex_search(_message,m,_contains_uppercase_regex) &&
+		   !std::regex_search(_message,m,_contains_lowercase_regex))
 			return "Whoa, chill out!";
-		if (std::regex_search(message,m,asking_a_question_regex))
+		if (std::regex_search(_message,m,_asking_a_question_regex))
 			return "Sure.";
 		return "Whatever.";
 	}
