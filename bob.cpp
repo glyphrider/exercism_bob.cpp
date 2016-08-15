@@ -1,3 +1,5 @@
+// vim: ts=4:nu
+//
 #include "bob.h"
 
 namespace bob
