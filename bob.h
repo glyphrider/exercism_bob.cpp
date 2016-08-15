@@ -12,16 +12,15 @@ namespace bob
 	{
 		private:
 			std::string _message;
-			std::regex _silence_regex;
-			std::regex _shouting_regex;
-			std::regex _contains_lowercase_regex;
-			std::regex _contains_uppercase_regex;
-			std::regex _asking_a_question_regex;
-			std::smatch m;
+			const std::regex _silence_regex;
+			const std::regex _shouting_regex;
+			const std::regex _contains_lowercase_regex;
+			const std::regex _contains_uppercase_regex;
+			const std::regex _asking_a_question_regex;
 		protected:
-			bool is_silence();
-			bool is_yelling();
-			bool is_question();
+			bool is_silence() const;
+			bool is_yelling() const;
+			bool is_question() const;
 		public:
 			Responder(const std::string& message);
 			std::string respond();

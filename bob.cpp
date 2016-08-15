@@ -23,17 +23,20 @@ namespace bob
 			return "Sure.";
 		return "Whatever.";
 	}
-	bool Responder::is_silence()
+	bool Responder::is_silence() const
 	{
+		static std::smatch m;
 		return std::regex_search(_message,m,_silence_regex);
 	}
-	bool Responder::is_yelling()
+	bool Responder::is_yelling() const
 	{
+		static std::smatch m;
 		return (std::regex_search(_message,m,_contains_uppercase_regex) &&
 			!std::regex_search(_message,m,_contains_lowercase_regex));
 	}
-	bool Responder::is_question()
+	bool Responder::is_question() const
 	{
+		static std::smatch m;
 		return std::regex_search(_message,m,_asking_a_question_regex);
 	}
 }
