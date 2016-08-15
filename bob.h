@@ -11,7 +11,7 @@ namespace bob
 	class Responder
 	{
 		private:
-			std::string _message;
+			const std::string _message;
 			const std::regex _silence_regex;
 			const std::regex _shouting_regex;
 			const std::regex _contains_lowercase_regex;
