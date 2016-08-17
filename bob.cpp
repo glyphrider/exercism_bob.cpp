@@ -8,11 +8,11 @@ namespace bob
 	{
 		private:
 			const std::string _message;
-			const std::regex _silence_regex;
-			const std::regex _shouting_regex;
-			const std::regex _contains_lowercase_regex;
-			const std::regex _contains_uppercase_regex;
-			const std::regex _asking_a_question_regex;
+			static const std::regex _silence_regex;
+			static const std::regex _shouting_regex;
+			static const std::regex _contains_lowercase_regex;
+			static const std::regex _contains_uppercase_regex;
+			static const std::regex _asking_a_question_regex;
 		protected:
 			bool is_silence() const;
 			bool is_yelling() const;
@@ -27,13 +27,14 @@ namespace bob
 		return Responder(message).respond();
 	}
 
+	const std::regex Responder::_silence_regex("^\\s*$");
+	const std::regex Responder::_shouting_regex(".*(!|\\?)$");
+	const std::regex Responder::_contains_lowercase_regex("[a-z]");
+	const std::regex Responder::_contains_uppercase_regex("[A-Z]");
+	const std::regex Responder::_asking_a_question_regex(".*\\?\\s*$");
+
 	Responder::Responder(const std::string& message):
-		_message(message),
-		_silence_regex("^\\s*$"),
-		_shouting_regex(".*(!|\\?)$"),
-		_contains_lowercase_regex("[a-z]"),
-		_contains_uppercase_regex("[A-Z]"),
-		_asking_a_question_regex(".*\\?\\s*$") {}
+		_message(message) {}
 	std::string Responder::respond()
 	{
 		if (is_silence())
