@@ -1,5 +1,7 @@
 # Bob
 
+[![Build Status](https://travis-ci.org/glyphrider/exercism_bob.cpp.svg?branch=master)](https://travis-ci.org/glyphrider/exercism_bob.cpp)
+
 Bob is a lackadaisical teenager. In conversation, his responses are very limited.
 
 Bob answers 'Sure.' if you ask him a question.
