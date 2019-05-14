@@ -6,8 +6,6 @@ addons:
                 packages: libboost-all-dev
 
 script:
-        - mkdir -p build
-        - cd build
-        - cmake ..
+        - cmake .
         - make
         - ctest
