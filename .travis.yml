@@ -1,5 +1,9 @@
 language: cpp
 
+addons:
+        apt:
+                packages: libboost-all-dev
+
 script:
         - mkdir -p build
         - cd build
